@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, status
 import yaml
 
 app = FastAPI()
@@ -20,7 +20,7 @@ async def hello():
 
 
 # POST endpoint to create a new greeting message
-@app.post("/hello")
+@app.post("/hello", status_code=status.HTTP_201_CREATED)
 async def create_hello(name: str):
     return {"message": f"Hello, {name}! Greeting message created"}
 
