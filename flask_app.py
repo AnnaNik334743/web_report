@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, make_response
 import flask_swagger_ui
 import yaml
 
@@ -26,7 +26,7 @@ def hello():
 @app.route("/hello", methods=["POST"])
 def create_hello():
     name = request.args.get("name")
-    return jsonify({"message": f"Hello, {name}! Greeting message created"})
+    return make_response(jsonify({"message": f"Hello, {name}! Greeting message created"}), 201)
 
 
 SWAGGER_URL = '/docs'
